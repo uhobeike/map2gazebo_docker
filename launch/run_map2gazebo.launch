@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<launch>
+  <!-- Arguments -->
+  <arg name="map_file" default="map.yaml"/>
+  <arg name="map2gazebo_docker_pkg_dir" default="$(find map2gazebo_docker)/outputs/models"/>
+
+  <!-- Node launch -->
+  <node pkg="map2gazebo_docker" name="ros_melodic_map2gazebo" type="map2gazebo_docker_run.sh"
+    args="$(arg map2gazebo_docker_pkg_dir) $(arg map_file)"
+    output="screen"/>
+</launch>

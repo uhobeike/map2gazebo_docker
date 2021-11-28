@@ -9,29 +9,28 @@ ENV BASH_ENV "/root/.bashrc"
 
 RUN apt update && apt upgrade -y && \ 
   apt install -y \
-  xvfb \
-  psmisc \
   python-pip \
   python3-pip \
-  # Install ROS related
+  ros-melodic-map-server \
   python-catkin-tools && \
   pip3 install rospkg catkin_pkg && \
   pip install --user trimesh && \
-  pip install --user numpy
+  pip install --user numpy && \
+  pip install pycollada && \
+  pip install scipy && \
+  rm -rf /var/lib/apt/lists/*
 
 
-RUN mkdir -p /home/catkin_ws/src \
-  && echo "source /opt/ros/melodic/setup.bash" >> /root/.bashrc \
-  && echo "source /home/catkin_ws/devel/setup.bash" >> /root/.bashrc
-
-RUN cd /home/catkin_ws/src && \
-  git clone https://github.com/uhobeike/map2gazebo_docker.git
-
-RUN source /opt/ros/melodic/setup.bash && \
+RUN mkdir -p /home/catkin_ws/src && \
+  echo "source /opt/ros/melodic/setup.bash" >> /root/.bashrc && \
+  echo "source /home/catkin_ws/devel/setup.bash" >> /root/.bashrc && \
+  cd /home/catkin_ws/src && \
+  git clone https://github.com/shilohc/map2gazebo.git && \
+  source /opt/ros/melodic/setup.bash && \
   cd /home/catkin_ws && rosdep install -r -y --from-paths --ignore-src . && \
   catkin build
 
-WORKDIR /home/catkin_ws/src/raspicat_slam
+WORKDIR /home/catkin_ws/src/map2gazebo
 
 COPY ./scripts/run_map2gazebo.sh /
 

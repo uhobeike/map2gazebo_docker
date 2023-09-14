@@ -16,7 +16,7 @@ echo -n \
   
   <!-- Nodes -->
   <include file="$(find gazebo_ros)/launch/empty_world.launch">
-    <arg name="world_name"    value="$(find raspicat_map2gazebo)config/world/Free_Name.world"/>
+    <arg name="world_name"    value="$(find map2gazebo_docker)config/world/Free_Name.world"/>
     <arg name="paused"        value="false"/>
     <arg name="use_sim_time"  value="true"/>
     <arg name="gui"           value="$(arg open_gui)"/>
@@ -29,6 +29,6 @@ echo -n \
   <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"/>
 
   <include file="$(find raspicat_gazebo)/launch/raspicat_simulation.launch"/>
-</launch>' | sed -e 's/Free_Name/'$1'/g' > $(rospack find raspicat_map2gazebo)/launch/raspicat_$1_world.launch
+</launch>' | sed -e 's/Free_Name/'$1'/g' > $(rospack find map2gazebo_docker)/launch/raspicat_$1_world.launch
 
 sleep 'infinity'

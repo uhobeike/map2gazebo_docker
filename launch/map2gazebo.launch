@@ -11,6 +11,7 @@
 
   <!-- Mkdir -->
   <param name="map2gazebo_model_dir" command="mkdir -p $(find map2gazebo_docker)/config/models/$(arg world_name)/meshes"/>
+  <param name="map2gazebo_world_dir" command="mkdir -p $(find map2gazebo_docker)/config/world"/>
 
   <!-- Copy file -->
   <param name="map2gazebo_copy_config_sdf" 

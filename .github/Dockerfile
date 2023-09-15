@@ -32,7 +32,7 @@ RUN mkdir -p $HOME/catkin_ws/src && \
   echo "source /opt/ros/melodic/setup.bash" >> $HOME/.bashrc && \
   echo "source $HOME/catkin_ws/devel/setup.bash" >> $HOME/.bashrc && \
   cd $HOME/catkin_ws/src && \
-  git clone https://github.com/shilohc/map2gazebo.git && \
+  git clone -b melodic https://github.com/uhobeike/map2gazebo.git && \
   git clone https://github.com/uhobeike/map2gazebo_docker && \
   source /opt/ros/$ROS_DISTRO/setup.bash && cd $HOME/catkin_ws && \
   rosdep update && \
